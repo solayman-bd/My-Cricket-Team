@@ -11,8 +11,9 @@ const MyTeam = (props) => {
   }
   return (
     <div className="w-50 bg-info my-5 mx-auto text-center">
-      <h4>Total Players: {count.length}</h4>
-      <h4>Players Name:</h4>
+      <h2 className="text-warning">Kolkata Knight Riders</h2>
+      <h6>Total Players: {count.length}</h6>
+      <h5>Players Name:</h5>
       <div className="w-50 mx-auto">
         <ol>
           {count.map((name) => (
@@ -21,7 +22,7 @@ const MyTeam = (props) => {
         </ol>
       </div>
 
-      <h5>Total Budget: ${total}</h5>
+      <h5 className="text-warning pb-2">Total Budget: ${total}</h5>
     </div>
   );
 };
