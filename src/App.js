@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import MyTeam from "./components/MyTeam/MyTeam";
+import PlayerList from "./components/PlayerList/PlayerList";
+import playerDetails from "./data/data.json";
 
 function App() {
+  const [playersInfo, setPlayers] = useState([]);
+  useEffect(() => {
+    setPlayers(playerDetails);
+  }, []);
+  const [count, setCount] = useState([]);
+  const [salary, setSalary] = useState([]);
+  const clickHandler = (playerName, playerSalary) => {
+    let l = 0;
+    count.map((previousPlayer) => {
+      if (previousPlayer === playerName) {
+        l++;
+      }
+    });
+    if (l === 0) {
+      const newCount = [...count, playerName];
+      setCount(newCount);
+      const salaryList = [...salary, playerSalary];
+      setSalary(salaryList);
+    } else {
+      alert("The Player is already selected!!");
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container text-center">
+      <div className="my-team">
+        <MyTeam salary={salary} count={count}></MyTeam>
+      </div>
+      <div className="player-details bg-success w-50 mx-auto">
+        <h1>Players List</h1>
+        {playersInfo.map((players) => (
+          <PlayerList
+            clickHandler={clickHandler}
+            players={players}
+          ></PlayerList>
+        ))}
+      </div>
     </div>
   );
 }
