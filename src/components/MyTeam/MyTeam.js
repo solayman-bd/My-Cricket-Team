@@ -22,7 +22,7 @@ const MyTeam = (props) => {
         </ol>
       </div>
 
-      <h5 className="text-warning pb-2">Total Budget: ${total}</h5>
+      <h5 className="text-warning pb-2">Total Budget: ${total.toFixed(2)}</h5>
     </div>
   );
 };
